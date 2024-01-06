@@ -16,10 +16,10 @@ private:
 
 public: 
     Graph(); 
-    Graph(const std::vector<std::string>& input_nodes, std::vector<std::tuple<std::string>>& input_edges);
+    Graph(const std::vector<std::string>& input_nodes, const std::vector<std::tuple<std::string>>& input_edges);
 
     void addNode(Node* new_node); 
-    void removeNode(std::string node_name); 
+    void removeNode(const std::string& node_name); 
 
     void addEdge(const std::tuple<std::string>& new_edge); 
     void removeEdge(const std::tuple<std::string>& removed_edge); 
@@ -30,8 +30,7 @@ public:
     void resetGraph(); 
 
     /*
-    toString method which returns 
-    Nodes: {list of nodes}
+    toString method which returns adjacency matrix of the graph
     */
     std::string toString();
 

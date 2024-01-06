@@ -18,23 +18,37 @@ std::vector<Node*> Node::getOutgoingEdges() const { return outgoing_edges; }
 void Node::addIncomingEdge(Node* node) { incoming_edges.push_back(node); }
 void Node::addOutgoingEdge(Node* node) { outgoing_edges.push_back(node); }
 
-void Node::deleteIncomingEdge(const std::string& name) 
+void Node::deleteIncomingEdge(const std::string& name_argument) 
 { 
-    incoming_edges.erase(std::remove(incoming_edges.begin(), incoming_edges.end(), name), incoming_edges.end()); 
+    for (std::vector<Node*>::iterator it = incoming_edges.begin(); it != incoming_edges.end();)
+    {
+        if ((*it)->getName() == name_argument) {
+            it = incoming_edges.erase(it); // erase and get the iterator to the next element
+        } else {
+            ++it; // move to the next element
+        }
+    }
 }
 
-void Node::deleteOutgoingEdge(const std::string& name) 
+void Node::deleteOutgoingEdge(const std::string& name_argument) 
 {
-    outgoing_edges.erase(std::remove(outgoing_edges.begin(), outgoing_edges.end(), name), outgoing_edges.end());
+    for (std::vector<Node*>::iterator it = outgoing_edges.begin(); it != outgoing_edges.end();)
+    {
+        if ((*it)->getName() == name_argument) {
+            it = incoming_edges.erase(it); // erase and get the iterator to the next element
+        } else {
+            ++it; 
+        }
+    }
 }
 
 std::string Node::toString() 
 {
     std::string nodeToString, temp_incoming_edges, temp_outgoing_edges; 
     
-    nodeToString += "Node Name: " + this->name + "\n";
-    nodeToString += "Incoming Edges: {" + nodeVectorToString(this->incoming_edges) + "}\n";
-    nodeToString += "Outgoing Edges: " + nodeVectorToString(this->outgoing_edges);
+    nodeToString += "Node Name: " + name + "\n";
+    nodeToString += "Incoming Edges: {" + nodeVectorToString(incoming_edges) + "}\n";
+    nodeToString += "Outgoing Edges: {" + nodeVectorToString(outgoing_edges) + "}";
     
     return nodeToString;
 }
