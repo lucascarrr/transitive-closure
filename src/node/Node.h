@@ -22,6 +22,12 @@ public:
          const std::vector<Node*>& outgoing_edges_argument,
          const std::string& name_argument);
 
+    Node(const Node& other);
+    Node(Node&& other); 
+
+    Node& operator=(const Node& other);
+    Node& operator=(Node&& other);
+
     std::string getName() const;
     void setName(const std::string& name);
 

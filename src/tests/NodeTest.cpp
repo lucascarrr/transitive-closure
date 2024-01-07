@@ -11,6 +11,10 @@ public:
         testToString();
         testIncomingEdge();
         testOutgoingEdge();
+        testCopyConstructor();
+        testMoveConstructor();
+        testCopyAssignmentOperator();
+        testMoveAssignmentOperator();
     }
 
 private:
@@ -48,6 +52,57 @@ private:
 
         Node* node = new Node(incoming_edges, outgoing_edges, "Test User");
         printResult(node->getName() == "Test User" && node->getIncomingEdges().empty() && node->getOutgoingEdges().empty(), "Normal Constructor");
+        
+        delete node;
+    }
+
+    void testCopyConstructor()
+    {
+        std::vector<Node*> incoming_edges; 
+        std::vector<Node*> outgoing_edges;
+
+        Node* node = new Node(incoming_edges, outgoing_edges, "Test User");
+        Node* node2 = new Node(*node); 
+        printResult(node->getName() == "Test User" && node->getIncomingEdges().empty() && node->getOutgoingEdges().empty(), "Copy Constructor");
+        
+        delete node; 
+        delete node2;
+    }
+
+    void testMoveConstructor()
+    {
+        std::vector<Node*> incoming_edges; 
+        std::vector<Node*> outgoing_edges;
+
+        Node* node = new Node(incoming_edges, outgoing_edges, "Test User");
+        Node* node2 = std::move(node);
+        printResult(node2->getName() == "Test User" && node2->getIncomingEdges().empty() && node2->getOutgoingEdges().empty(), "Move Constructor");
+
+        delete node2;
+    }
+
+    void testCopyAssignmentOperator() 
+    {
+        std::vector<Node*> incoming_edges; 
+        std::vector<Node*> outgoing_edges;
+
+        Node* node = new Node(incoming_edges, outgoing_edges, "Test User");
+        Node* node2 = new Node(incoming_edges, outgoing_edges, "Fake User User");
+        *node2 = *node;
+
+        printResult(node2->getName() == "Test User" && node2->getIncomingEdges().empty() && node2->getOutgoingEdges().empty(), "Copy Assignment Operator");
+    }
+
+    void testMoveAssignmentOperator() 
+    {
+        std::vector<Node*> incoming_edges; 
+        std::vector<Node*> outgoing_edges;
+
+        Node* node = new Node(incoming_edges, outgoing_edges, "Test User");
+        Node* node2 = new Node(incoming_edges, outgoing_edges, "Fake User User");
+        *node2 = std::move(*node);
+
+        printResult(node2->getName() == "Test User" && node2->getIncomingEdges().empty() && node2->getOutgoingEdges().empty(), "Move Assignment Operator");
     }
 
     void testToString()
@@ -58,6 +113,8 @@ private:
         Node* node = new Node(incoming_edges, outgoing_edges, "Test User");
         
         printResult(node->toString() == "Node Name: Test User\nIncoming Edges: {}\nOutgoing Edges: {}", "toString Test");
+
+        delete node;
     }
 
     void testIncomingEdge() 
@@ -82,7 +139,13 @@ private:
         
         node->addOutgoingEdge(node2);
         printResult(node->getOutgoingEdges()[0]->getName() == "Test User 2", "Test Outgoing Edges");
+
+        delete node; 
+        delete node2;
     }
+
+
+
 };
 
 int main() {
