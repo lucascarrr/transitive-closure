@@ -22,6 +22,12 @@ public:
          const std::vector<Node*>& outgoing_edges_argument,
          const std::string& name_argument);
 
+    Node(const Node& other);
+    Node(Node&& other); 
+
+    Node& operator=(const Node& other);
+    Node& operator=(Node&& other);
+
     std::string getName() const;
     void setName(const std::string& name);
 
@@ -34,12 +40,12 @@ public:
     void deleteIncomingEdge(const std::string& name); 
     void deleteOutgoingEdge(const std::string& name);
 
-    /*
-    toString method for a node. Will print:
-        Node Name: <name of node> 
-        Incoming Edges: {i_e1, i_e2, i_e3}
-        Outgoing Edges: {o_e1, o_e2}
-    */
+    // /*
+    // toString method for a node. Will print:
+    //     Node Name: <name of node> 
+    //     Incoming Edges: {i_e1, i_e2, i_e3}
+    //     Outgoing Edges: {o_e1, o_e2}
+    // */
     std::string toString();
 
     ~Node(); 
