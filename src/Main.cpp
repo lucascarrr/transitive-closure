@@ -28,8 +28,6 @@ int main() {
                 std::cout << "Enter relations {(Node1, Node2), (Node2, Node3), (Node3, Node1)}" << std::endl;
                 std::getline(std::cin, relation_string, '\n');
                 std::cout << "Node String: " << node_string << " Relation String: " << relation_string << std::endl;
-
-            
                 break;
             case '2':
                 std::cout << "You entered " << choice << std::endl;
