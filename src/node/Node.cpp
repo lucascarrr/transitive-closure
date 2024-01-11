@@ -8,8 +8,8 @@ Node::Node() : name(""), incoming_edges(), outgoing_edges() {}
 /*
 Argument Constructor
 */
-Node::Node(const std::vector<Node*>& incoming_edges_argument,
-           const std::vector<Node*>& outgoing_edges_argument,
+Node::Node(const std::vector<Node*> incoming_edges_argument,
+           const std::vector<Node*> outgoing_edges_argument,
            const std::string& name_argument)
            : name(name_argument), incoming_edges(incoming_edges_argument), outgoing_edges(outgoing_edges_argument) {} 
 
@@ -20,15 +20,15 @@ Node::Node(const Node& other)
     : name(other.getName()) {
     
     // Deep copy of incoming_edges
-    for (const Node* incomingEdge : other.getIncomingEdges()) {
-        Node* newNode = new Node(*incomingEdge);
-        incoming_edges.push_back(newNode);
+    for (const Node* incoming_edge : other.getIncomingEdges()) {
+        Node* new_node = new Node(*incoming_edge);
+        incoming_edges.push_back(new_node);
     }
 
     // Deep copy of outgoing_edges
-    for (const Node* outgoingEdge : other.getOutgoingEdges()) {
-        Node* newNode = new Node(*outgoingEdge);
-        outgoing_edges.push_back(newNode);
+    for (const Node* outgoing_edge : other.getOutgoingEdges()) {
+        Node* new_node = new Node(*outgoing_edge);
+        outgoing_edges.push_back(new_node);
     }
 }
 
@@ -47,27 +47,27 @@ Copy Assignment Operator
 */
 Node& Node::operator=(const Node& other) {
     if (this != &other) {
-        for (Node* incomingEdge : incoming_edges) {
-            delete incomingEdge;
+        for (Node* incoming_edge : incoming_edges) {
+            delete incoming_edge;
         }
         incoming_edges.clear();
 
-        for (Node* outgoingEdge : outgoing_edges) {
-            delete outgoingEdge;
+        for (Node* outgoing_edge : outgoing_edges) {
+            delete outgoing_edge;
         }
         outgoing_edges.clear();
         name = other.name;
 
         // Deep copy of incoming_edges
-        for (const Node* incomingEdge : other.incoming_edges) {
-            Node* newNode = new Node(*incomingEdge);
-            incoming_edges.push_back(newNode);
+        for (const Node* incoming_edge : other.incoming_edges) {
+            Node* new_node = new Node(*incoming_edge);
+            incoming_edges.push_back(new_node);
         }
 
         // Deep copy of outgoing_edges
-        for (const Node* outgoingEdge : other.outgoing_edges) {
-            Node* newNode = new Node(*outgoingEdge);
-            outgoing_edges.push_back(newNode);
+        for (const Node* outgoing_edge : other.outgoing_edges) {
+            Node* new_node = new Node(*outgoing_edge);
+            outgoing_edges.push_back(new_node);
         }
     }
     return *this;
@@ -139,7 +139,7 @@ std::string Node::toString() const
     
     nodeToString += "Node Name: " + name + "\n";
     nodeToString += "Incoming Edges: {" + nodeVectorToString(incoming_edges) + "}\n";
-    nodeToString += "Outgoing Edges: {" + nodeVectorToString(outgoing_edges) + "}";
+    nodeToString += "Outgoing Edges: {" + nodeVectorToString(outgoing_edges) + "}\n";
     
     return nodeToString;
 }

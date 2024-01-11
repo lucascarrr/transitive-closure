@@ -18,8 +18,8 @@ private:
 
 public: 
     Node(); 
-    Node(const std::vector<Node*>& incoming_edges_argument,
-         const std::vector<Node*>& outgoing_edges_argument,
+    Node(const std::vector<Node*> incoming_edges_argument,
+         const std::vector<Node*> outgoing_edges_argument,
          const std::string& name_argument);
 
     Node(const Node& other);
