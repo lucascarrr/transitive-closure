@@ -1,3 +1,5 @@
 .vscode/
 TransitiveClosure
 my_program
+bin/*
+.DS_Store

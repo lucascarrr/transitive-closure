@@ -133,7 +133,7 @@ void Node::deleteOutgoingEdge(const std::string& name_argument)
 /*
 To String Methods
 */
-std::string Node::toString() 
+std::string Node::toString() const
 {
     std::string nodeToString, temp_incoming_edges, temp_outgoing_edges; 
     
@@ -144,7 +144,7 @@ std::string Node::toString()
     return nodeToString;
 }
 
-std::string Node::nodeVectorToString(const std::vector<Node*>& vec) 
+std::string Node::nodeVectorToString(const std::vector<Node*>& vec) const
 {
     std::string temp_string;
 

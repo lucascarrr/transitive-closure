@@ -14,7 +14,7 @@ private:
     /*
     for a vector (incoming or outgoing edges), this method will get the Node.name of each element in that vector, concatenated into a string
     */
-    std::string nodeVectorToString(const std::vector<Node*>& input_vector); 
+    std::string nodeVectorToString(const std::vector<Node*>& input_vector) const; 
 
 public: 
     Node(); 
@@ -46,7 +46,7 @@ public:
     //     Incoming Edges: {i_e1, i_e2, i_e3}
     //     Outgoing Edges: {o_e1, o_e2}
     // */
-    std::string toString();
+    std::string toString() const;
 
     ~Node(); 
 };
