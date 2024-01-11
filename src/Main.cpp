@@ -64,7 +64,8 @@ int main() {
         }
     }
 
-    std::cout << "Sanity Check:\n" << initial_graph.toString() << std::endl;
+    std::cout << "Sanity Check 1:\n" << initial_graph.toString() << std::endl;
+    std::cout << "Sanity Check 2:\n" << initial_graph.toString() << std::endl;
     return 0;
 }
 

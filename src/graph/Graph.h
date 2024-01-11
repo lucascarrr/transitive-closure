@@ -11,7 +11,7 @@
 class Graph 
 {
 private:
-    std::unordered_map<std::string, Node> nodes;
+    std::unordered_map<std::string, Node * > nodes;
     std::vector<Node*> inital_graph;
     std::vector<std::tuple<std::string>> initial_relations;
     std::vector<std::tuple<std::string>> transitive_closure;
@@ -46,7 +46,7 @@ public:
     // void addEdge(const std::tuple<std::string>& new_edge); 
     // void removeEdge(const std::tuple<std::string>& removed_edge); 
 
-    std::unordered_map<std::string, Node> getNodes(); 
+    std::unordered_map<std::string, Node*> getNodes() const;  
     // std::vector<Node>* getInitialGraph();
     // std::vector<std::tuple<std::string>> getInitialBinaryRelations();
 

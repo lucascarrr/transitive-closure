@@ -5,7 +5,7 @@ Graph::Graph() : nodes(), inital_graph(), initial_relations(), transitive_closur
 Graph::Graph(const std::vector<std::string>& input_nodes, const std::vector<std::tuple<std::string, std::string>>& input_relations)
 {
     for (const auto& node_name : input_nodes) {
-        nodes[node_name] = Node({}, {}, node_name);
+        nodes[node_name] = new Node({}, {}, node_name);
     }
 
         // Step 2: Establish connections between nodes
@@ -15,9 +15,9 @@ Graph::Graph(const std::vector<std::string>& input_nodes, const std::vector<std:
 
         // Check if the names are valid (exist in the nodes map)
         if (nodes.find(source_name) != nodes.end() && nodes.find(target_name) != nodes.end()) {
-            // Update outgoing edges for the source node
-            nodes[source_name].addOutgoingEdge(&nodes[target_name]);
-            nodes[target_name].addIncomingEdge(&nodes[source_name]);
+
+            nodes[source_name]->addOutgoingEdge(nodes[target_name]);
+            nodes[target_name]->addIncomingEdge(nodes[source_name]);
         }
         // Handle invalid node names if needed
         else {
@@ -35,7 +35,11 @@ Graph::Graph(const std::vector<std::string>& input_nodes, const std::vector<std:
 
 // Graph::Graph(const Graph& other) 
 // {
-    
+//     for (std::unordered_map<std::string,Node>::iterator it=other.getNodes().begin(); it!=other.getNodes().end(); ++it)
+//     {
+
+//     }
+  
 // }
 
 // void Graph::addNode(Node new_node)
@@ -50,7 +54,7 @@ Graph::Graph(const std::vector<std::string>& input_nodes, const std::vector<std:
 //     }
 // }
 
-std::unordered_map<std::string, Node> Graph::getNodes()
+std::unordered_map<std::string, Node*> Graph::getNodes() const
 {
     return nodes;
 }
@@ -60,7 +64,7 @@ std::string Graph::toString()
     std::string map_as_string;
     for (const auto& pair : nodes) 
     {
-    map_as_string += pair.second.toString()+ "\n";
+    map_as_string += pair.second->toString()+ "\n";
     }
     return map_as_string;
 }
