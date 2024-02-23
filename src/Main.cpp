@@ -34,7 +34,9 @@ int main() {
                 std::cout << "Node String: " << node_string << " Relation String: " << relation_string << std::endl;
 
                 nodes = {"A", "B", "C"};
-                relations = {{"A", "B"}, {"B", "C"}, {"A", "C"}, {"C", "A"}, {"B", "B"}};
+                relations = {{"A", "B"}, {"B", "C"}, {"A", "C"}, {"C", "A"}, {"B", "B"}, {"D", "A"}};
+
+                
                 initial_graph = Graph(nodes, relations);
                 std::cout << "Graph as String:\n" << initial_graph.toString() << std::endl;
                 break;
@@ -55,16 +57,14 @@ int main() {
                 break;
             case 'q':
                 std::cout << "Quitting program." << std::endl;
-                initial_graph.getNodes();
                 running = false;
-                break; // Exit the program
+                break;
             default:
                 std::cout << "Invalid choice. Please try again." << std::endl;
                 break;
         }
     }
 
-    std::cout << "Sanity Check 1:\n" << initial_graph.toString() << std::endl;
     std::cout << "Sanity Check 2:\n" << initial_graph.toString() << std::endl;
     return 0;
 }
